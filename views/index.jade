@@ -2,6 +2,10 @@ extends layout
 
 block content
   h1= title
+  :markdown
+   Join your heroes [Swallows](http://arthur-ransome.wikia.com/wiki/Swallows) and Amazons and send messages [the way](http://arthur-ransome.wikia.com/wiki/Semaphore)
+   sailors have done it since 1800.
+  div(id='teaser')
   | <input id="mess" value="swallows forever"></input><button id="sendmess">send to server</button><br />
-  | <div id="notif"></div>
-  | <div id="putithere"></div>
+  div(id='notif')
+  div(id='putithere')
