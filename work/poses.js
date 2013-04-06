@@ -11,14 +11,14 @@ var suffix = "\"";
 //};
 var sem = { "bottomR":      "|-3,-33|0,-60", // right hand
             "bottomL":      "|3,-33|0,-60", // left hand
-            "bottomLeft":   "|-23,-25|-42,-42",
+            "bottomLeft":   "|-23,-30|-42,-42",
             "left":         "|-33,-2|-60,0",
-            "topLeft":      "|-23,17|-42,42",
+            "topLeft":      "|-23,20|-42,42",
             "topR":         "|-3,33|0,60",
             "topL":         "|3,33|0,60",
-            "topRight":     "|23,17|42,42",
+            "topRight":     "|23,20|42,42",
             "right":        "|33,-2|60,0",
-            "bottomRight":  "|23,-25|42,-42"
+            "bottomRight":  "|23,-30|42,-42"
 };
 var poses = {
     "A": prefix + sem.bottomLeft  + sem.bottomL     + suffix,
