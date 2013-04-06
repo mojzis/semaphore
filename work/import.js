@@ -53,5 +53,5 @@ var poses = [
 
 db = connect("localhost:27017/hk_com");
 poses.forEach(function(row){
-    db.poses.insert(row);
+    db.poses.insert(row, {safe: true});
 });
