@@ -7,29 +7,46 @@ var client = new mongodb.Db('hk_com', new mongodb.Server(process.env.OPENSHIFT_M
 
 var mongoGetPosesByLetters = function( letters, callback ) {
 	var letters = letters;
-	client.open(function(err, p_client){
-		var posesCollection = new mongodb.Collection(client, posesCollectionName );
-		posesCollection.find( { letter: {$in: letters} } ).toArray( new HandleResponse( function(results) {
-			var map = getByLetter(results);
-			results = [];
-			for (var i = 0; i < letters.length; i++) {
-				results.push(map[letters[i]]);
-			}
-			callback(results);
-		} ) );
-	});
+	var process = function() {
+		client.open(function(err, p_client){
+			var posesCollection = new mongodb.Collection(client, posesCollectionName );
+			posesCollection.find( { letter: {$in: letters} } ).toArray( new HandleResponse( function(results) {
+				var map = getByLetter(results);
+				results = [];
+				for (var i = 0; i < letters.length; i++) {
+					results.push(map[letters[i]]);
+				}
+				callback(results);
+			} ) );
+		});
+	}
+
+	login(process);
 }
 
 var mongoInsertActorPoses = function( poses ) {
 	var actorsCollection = new mongodb.Collection( client, actorsCollectionName );
-	actorsCollection.insert( {messageText: incomingMessage, actorPoses: poses}, new HandleResponse( sendResponse ) );
+		actorsCollection.insert( {messageText: incomingMessage, actorPoses: poses}, new HandleResponse( sendResponse ) );
 }
 
 var mongoGetActorPosesById = function( messageId, callback ) {
-	client.open(function(err, client) {
-		var actorsCollection = new mongodb.Collection( client, actorsCollectionName );
-		actorsCollection.findOne( {_id: messageId }, new HandleResponse( callback ) );
-	});
+	var proccess = function() {
+		client.open(function(err, client) {
+			var actorsCollection = new mongodb.Collection( client, actorsCollectionName );
+			actorsCollection.findOne( {_id: messageId }, new HandleResponse( callback ) );
+		}); 
+	}
+	login(process);
+}
+
+var login = function(callback) {
+	if ( process.env.OPENSHIFT_NOSQL_DB_USERNAME ) {
+		clien.authenticate(process.env.OPENSHIFT_NOSQL_DB_USERNAME, process.env.OPENSHIFT_DB_PASSWORD, function(err, res) {
+			callback();
+		});
+	} else {
+		callback();
+	}
 }
 
 var HandleResponse = function( callback ) {
