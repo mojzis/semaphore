@@ -40,13 +40,13 @@ var mongoGetActorPosesById = function( messageId, callback ) {
 }
 
 var login = function(callback) {
-	if ( process.env.OPENSHIFT_NOSQL_DB_USERNAME ) {
-		clien.authenticate(process.env.OPENSHIFT_NOSQL_DB_USERNAME, process.env.OPENSHIFT_DB_PASSWORD, function(err, res) {
-			callback();
-		});
-	} else {
+	clien.authenticate("admin", "Eb_fa3qdsRsv", function(err, res) {
 		callback();
-	}
+	});
+	// if ( process.env.OPENSHIFT_NOSQL_DB_USERNAME ) {
+	// } else {
+	// 	callback();
+	// }
 }
 
 var HandleResponse = function( callback ) {
