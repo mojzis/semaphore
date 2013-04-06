@@ -38,7 +38,7 @@ function drawSemaphore(poses) {
   var actors = [];
   var actorWidth = 100;
   for (j = 0; j < poses.length; j++) {
-    actors.push(actorTemplate.attr('pose',poses[j]).attr('t','translate(' + (40 +(j) * actorWidth) + ',150)').clone());
+    actors.push(actorTemplate.attr('pose',poses[j]).attr('t','translate(' + (60 +(j) * actorWidth) + ',150)').clone());
   }
   console.log(actors);
   sceneHtml = sceneStart;
@@ -47,7 +47,7 @@ function drawSemaphore(poses) {
   }
   sceneHtml += sceneEnd;
   scene = $(sceneHtml);
-  scene.attr('width', (actorWidth + 20) * actors.length );
+  scene.attr('width', (actorWidth + 3) * actors.length );
   $('#putithere').html(scene.prop('outerHTML'));
   parser = new cmx.Parser(cmx);
   sceneModels = parser.parseDoc($("body"));
