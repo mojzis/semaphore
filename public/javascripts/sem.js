@@ -55,10 +55,10 @@ function drawSemaphore(poses, messText) { // = null
   var actorTemplate = $("<actor></actor>");
   var bubbleTemplate = $("<bubble>");
   var bubOptions = [
-    "0|0|-160,29|-122,40|-158,76|-166,78",
-    "0|0|-77,20|-68,47|-38,48|-35,54",
-    "0|0|-109,71|-48,46|-66,85|-72,91",
-    "0|0|1,49|-20,47|-9,59|-6,62"
+    "44,-3|24,7|-2,37|36,48|0,84|-9,91",
+    "31,0|16,7|0,15|9,42|39,43|42,49",
+    "29,-2|21,10|-1,55|60,30|42,69|36,75",
+    "29,-1|22,10|34,26|13,24|24,36|27,39"
   ];
   var colorOptions = ['red','green','blue','brown'];
   var spanTemplate = $('<tspan x="0" y="0em"></tspan>');
