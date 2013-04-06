@@ -51,6 +51,7 @@ var poses = [
     {letter: "EOM", pose: prefix + sem.left        + sem.right       + suffix}
 ];
 
+db = connect("localhost:27020/hk_com");
 poses.forEach(function(row){
     db.poses.insert(row);
 });
