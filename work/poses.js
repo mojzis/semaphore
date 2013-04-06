@@ -1,0 +1,41 @@
+var prefix = "pose=\"28,1|0,31|0,0|-1,-36|1,-3|-3,-45|-17,-85|-28,-112|4,-87|9,-116";
+var suffix = "\"";
+var sem = {"bottom":       "|0,-27|0,-50",
+           "bottomLeft":   "|-19,-19|-35,-35",
+           "left":         "|-27,0|-50,0",
+           "topLeft":      "|-19,19|-35,35",
+           "top":          "|0,27|0,50",
+           "topRight":     "|19,19|35,35",
+           "right":        "|27,0|50,0",
+           "bottomRight":  "|19,-19|35,-35"
+};
+var poses = {
+    "A": prefix + sem.bottomLeft  + sem.bottom      + suffix,
+    "B": prefix + sem.left        + sem.bottom      + suffix,
+    "C": prefix + sem.topLeft     + sem.bottom      + suffix,
+    "D": prefix + sem.top         + sem.bottom      + suffix,
+    "E": prefix + sem.bottom      + sem.topRight    + suffix,
+    "F": prefix + sem.bottom      + sem.right       + suffix,
+    "G": prefix + sem.bottom      + sem.bottomRight + suffix,
+    "H": prefix + sem.left        + sem.bottomLeft  + suffix,
+    "I": prefix + sem.topLeft     + sem.bottomLeft  + suffix,
+    "J": prefix + sem.top         + sem.right       + suffix,
+    "K": prefix + sem.bottomLeft  + sem.top         + suffix,
+    "L": prefix + sem.bottomLeft  + sem.topRight    + suffix,
+    "M": prefix + sem.bottomLeft  + sem.right       + suffix,
+    "N": prefix + sem.bottomLeft  + sem.bottomRight + suffix,
+    "O": prefix + sem.topLeft     + sem.left        + suffix,
+    "P": prefix + sem.left        + sem.top         + suffix,
+    "Q": prefix + sem.left        + sem.topRight    + suffix,
+    "R": prefix + sem.left        + sem.right       + suffix,
+    "S": prefix + sem.left        + sem.bottomRight + suffix,
+    "T": prefix + sem.topLeft     + sem.top         + suffix,
+    "U": prefix + sem.topLeft     + sem.topRight    + suffix,
+    "V": prefix + sem.top         + sem.bottomRight + suffix,
+    "W": prefix + sem.right       + sem.topRight    + suffix,
+    "X": prefix + sem.bottomRight + sem.topRight    + suffix,
+    "Y": prefix + sem.topLeft     + sem.right       + suffix,
+    "Z": prefix + sem.bottomRight + sem.right       + suffix,
+  "EOW": prefix + sem.bottom      + sem.bottom      + suffix,
+  "EOM": prefix + sem.left        + sem.right       + suffix
+};
