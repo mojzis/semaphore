@@ -54,15 +54,20 @@ function drawSemaphore(poses, messText) { // = null
   var sceneEnd = "</scene>";
   var actorTemplate = $("<actor></actor>");
   var bubbleTemplate = $("<bubble>");
-  var bubOptions = ['hohoho','huhuhu'];
+  var bubOptions = [
+    "0|0|-160,29|-122,40|-158,76|-166,78",
+    "0|0|-77,20|-68,47|-38,48|-35,54",
+    "0|0|-109,71|-48,46|-66,85|-72,91",
+    "0|0|1,49|-20,47|-9,59|-6,62"
+  ];
   var colorOptions = ['red','green','blue','brown'];
-  var spanTemplate = $("<tspan></tspan>");
+  var spanTemplate = $('<tspan x="0" y="0em"></tspan>');
   var actors = [];
   var actorWidth = 125;
   var bub = $('');
   for (j = 0; j < poses.length; j++) {
     if (messText) {
-      bub = bubbleTemplate.attr('pose', randAI(bubOptions)).html(spanTemplate).attr('fill',randAI(colorOptions)).html(messText[j]); // translate ?
+      bub = bubbleTemplate.attr('pose', randAI(bubOptions)).html(spanTemplate.attr('fill',randAI(colorOptions)).html(messText[j])); // translate ?
     }
     actors.push(actorTemplate.attr('pose',poses[j]).attr('t','translate(' + (65 +(j) * actorWidth) + ',150)').html(bub).clone());
   }
