@@ -24247,10 +24247,12 @@ define("svginnerhtml", function(){});
       return setTimeout(checkIfLoaderIsBroken, 2000);
     };
     launch = function() {
+
       var $scene, parser, sceneModel, sceneModels, _i, _len;
       cmx.previousCmx = window.cmx;
       window.cmx = cmx;
       publishEvent("cmx:launched");
+/*
       parser = new cmx.Parser(cmx);
       sceneModels = parser.parseDoc($("body"));
       for (_i = 0, _len = sceneModels.length; _i < _len; _i++) {
@@ -24259,8 +24261,10 @@ define("svginnerhtml", function(){});
         console.log("model for #" + ($scene.attr("id")) + ":", this);
         sceneModel.debugReport(2);
         sceneModel.materialize($scene);
+
       }
       return publishEvent("cmx:ready");
+*/
     };
     publishEvent("cmx:loaded");
     underscore.string = underscore.str = underscoreString;

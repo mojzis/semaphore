@@ -1,18 +1,11 @@
-$(window).ready( function() {
 var serverAddress = "http://mojzis.apiary.dev:8000/message";
+$(window).ready( function() {
 // check location.hash, in case it contains an id, request the stuff on server and paint it blue
 if(location.hash) {
-  var messId = location.hash.substr(1);
-  var request = $.ajax({
-    url: serverAddress + '/'+ messId,
-    type: "get",
-    complete: function(event) {
-      $('#teaser').html('send a reply :');
-      var response = $.parseJSON(event.responseText);
-      drawSemaphore(response.actorPoses);
-    }
+  $(window).on("cmx:launched",null,event,function() {
+    var messId = location.hash.substr(1);
+    getMessage(messId, false);
   });
-
 }
 $('#sendmess').click(function(){
   var mess = $('#mess').val();
@@ -35,17 +28,45 @@ $('#sendmess').click(function(){
   });
 });
 
-function drawSemaphore(poses) {
-  // TODO : check if empty, otherwise cleanup
+function getMessage(messId, help ) { //= false
+    var request = $.ajax({
+      url: serverAddress + '/'+ messId,
+      type: "get",
+      complete: function(event) {
+        $('#teaser').html('send a reply :');
+        var response = $.parseJSON(event.responseText);
+        messText = help ? response.messageText : null;
+        drawSemaphore(response.actorPoses, messText);
+        $('#putithere').append('no comprendo ? <a id="gethelp" href="#">Get help</a>');
+        $('#gethelp').click( function()  {
+          var messId = location.hash.substr(1);
+          getMessage(messId, true);
+          return false;
+        });
+      }
+    });
+}
+
+function drawSemaphore(poses, messText) { // = null
+  console.log(messText);
+
   var sceneStart = "<scene id='scene1'>";
   var sceneEnd = "</scene>";
   var actorTemplate = $("<actor></actor>");
+  var bubbleTemplate = $("<bubble>");
+  var bubOptions = ['hohoho','huhuhu'];
+  var colorOptions = ['red','green','blue','brown'];
+  var spanTemplate = $("<tspan></tspan>");
   var actors = [];
   var actorWidth = 125;
+  var bub = $('');
   for (j = 0; j < poses.length; j++) {
-    actors.push(actorTemplate.attr('pose',poses[j]).attr('t','translate(' + (65 +(j) * actorWidth) + ',150)').clone());
+    if (messText) {
+      bub = bubbleTemplate.attr('pose', randAI(bubOptions)).html(spanTemplate).attr('fill',randAI(colorOptions)).html(messText[j]); // translate ?
+    }
+    actors.push(actorTemplate.attr('pose',poses[j]).attr('t','translate(' + (65 +(j) * actorWidth) + ',150)').html(bub).clone());
   }
-  console.log(actors);
+  //console.log(actors);
   sceneHtml = sceneStart;
   for (j = 0; j < actors.length; j++) {
     sceneHtml += actors[j].prop('outerHTML');
@@ -56,16 +77,18 @@ function drawSemaphore(poses) {
   $('#putithere').html(scene.prop('outerHTML'));
   parser = new cmx.Parser(cmx);
   sceneModels = parser.parseDoc($("body"));
-  console.log(sceneModels);
+  //console.log(sceneModels);
   for (_i = 0, _len = sceneModels.length; _i < _len; _i++) {
     sceneModel = sceneModels[_i];
     sceneModel.props.frame = false;
-    console.log(sceneModel);
+    //console.log(sceneModel);
     $scene = $(sceneModel.source);
-    sceneModel.debugReport(2);
+    //sceneModel.debugReport(2);
     sceneModel.materialize($scene);
   }
 
   }
 
-
+function randAI(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
