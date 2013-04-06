@@ -40,7 +40,7 @@ var mongoGetActorPosesById = function( messageId, callback ) {
 }
 
 var login = function(callback) {
-	clien.authenticate("admin", "Eb_fa3qdsRsv", function(err, res) {
+	client.authenticate("admin", "Eb_fa3qdsRsv", function(err, res) {
 		callback();
 	});
 	// if ( process.env.OPENSHIFT_NOSQL_DB_USERNAME ) {
