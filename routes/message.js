@@ -33,10 +33,12 @@ var mongoGetActorPosesById = function( messageId, callback ) {
 	var proccess = function() {
 		//client.open(function(err, client) {
 			var actorsCollection = new mongodb.Collection( client, actorsCollectionName );
-			actorsCollection.findOne( {_id: messageId }, new HandleResponse( callback ) );
+			var BSON = mongodb.BSONPure;
+			var o_id = new BSON.ObjectID(messageId);
+			actorsCollection.findOne( {"_id": o_id}, new HandleResponse(callback) );
 		//}); 
 	}
-	login(process);
+	login(proccess);
 }
 
 var login = function(callback) {
@@ -104,10 +106,12 @@ exports.proccessCreate = function( req, res ) {
 
 exports.proccessGet = function( req, res ) {
 	response = res;
-	if ( req.params.messageId ) {
+	var messageId = req.params.messageId || null;
+	if ( messageId ) {
 		mongoGetActorPosesById( messageId, function( results ) {
+			console.log(results);
 			if( results == null ) {
-				var error = "No results on messageId: " + req.messageId;
+				var error = "No results on messageId: " + messageId
 				console.log( error );
 				sendErrorResponse( error );
 			} else {
