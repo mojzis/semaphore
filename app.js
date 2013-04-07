@@ -5,8 +5,7 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , user = require('./routes/user')
-  , ahoj = require('./routes/ahoj')
+  , about = require('./routes/about')
   , message = require('./routes/message')
   , http = require('http')
   , path = require('path');
@@ -31,8 +30,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
-app.get('/ahoj', ahoj.greet);
+app.get('/about', about.about);
 app.post('/message', message.proccessCreate);
 app.get('/message/:messageId', message.proccessGet);
 
