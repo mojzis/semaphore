@@ -104,10 +104,11 @@ exports.proccessCreate = function( req, res ) {
 
 exports.proccessGet = function( req, res ) {
 	response = res;
-	if ( req.params.messageId ) {
+	var messageId = req.params.messageId || null;
+	if ( messageId ) {
 		mongoGetActorPosesById( messageId, function( results ) {
 			if( results == null ) {
-				var error = "No results on messageId: " + req.messageId;
+				var error = "No results on messageId: " + messageId
 				console.log( error );
 				sendErrorResponse( error );
 			} else {
