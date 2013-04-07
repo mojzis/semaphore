@@ -1,4 +1,4 @@
-var serverAddress = "http://mojzis.apiary.dev:8000/message"; // " http://firstapp-semaphore.ph/message"
+var serverAddress = "http://firstapp-semaphore.ph/message"; //"http://mojzis.apiary.dev:8000/message";
 $(window).ready( function() {
 // check location.hash, in case it contains an id, request the stuff on server and paint it blue
 if(location.hash) {
