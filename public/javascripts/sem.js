@@ -37,7 +37,7 @@ function getMessage(messId, help ) { //= false
         var response = $.parseJSON(event.responseText);
         messText = help ? response.messageText : null;
         drawSemaphore(response.actorPoses, messText);
-        $('#putithere').append('no comprendo ? <a id="gethelp" href="#">Get help</a>');
+        $('#putithere').append('<br clear="all" />no comprendo ? <a id="gethelp" href="#">Get help</a>');
         $('#gethelp').click( function()  {
           var messId = location.hash.substr(1);
           getMessage(messId, true);

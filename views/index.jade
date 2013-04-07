@@ -2,11 +2,12 @@ extends layout
 
 block content
   h1= title
-  :markdown
-   Send messages in style,  [sailors style](http://arthur-ransome.wikia.com/wiki/Semaphore).
-  div(id='teaser')
-  input(id='mess',value='swallows forever')
-  button(id='sendmess') send to server
+  p(class='centered') Send messages in style,
+    a(href='http://arthur-ransome.wikia.com/wiki/Semaphore') sailors style .
+  div(id='teaser', class='centered')
+  div(class='centered')
+   input(id='mess',value='swallows forever')
+   button(id='sendmess') show
 
 
   div(id='notif')
